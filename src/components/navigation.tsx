@@ -20,7 +20,7 @@ export function Navigation() {
           </Link>
 
           {status === "loading" ? (
-            <div className="h-9 w-16 animate-pulse rounded bg-slate-200" />
+            <div className="h-10 w-20 animate-pulse rounded-lg bg-slate-200/50" />
           ) : session ? (
             <div className="flex items-center space-x-4">
               <Link
@@ -29,17 +29,24 @@ export function Navigation() {
                     ? "/employer/dashboard"
                     : "/talent/dashboard"
                 }
-                className="text-sm font-medium hover:underline"
+                className="text-sm font-medium text-slate-700 hover:text-slate-900 transition-colors"
               >
                 Dashboard
               </Link>
-              <Button variant="outline" onClick={() => signOut()} size="sm">
+              <Button
+                variant="outline"
+                onClick={() => signOut()}
+                size="sm"
+                className="btn-secondary"
+              >
                 Sign Out
               </Button>
             </div>
           ) : (
             <Link href="/login">
-              <Button size="sm">Sign In</Button>
+              <Button size="sm" className="btn-primary">
+                Sign In
+              </Button>
             </Link>
           )}
         </nav>

@@ -65,12 +65,15 @@ export default function LoginPage() {
 
   if (session) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
         <Navigation />
-        <main className="container mx-auto px-4 py-8">
+        <main className="container mx-auto py-16">
           <Card className="max-w-md mx-auto">
-            <CardContent className="text-center py-8">
-              <p>Redirecting...</p>
+            <CardContent className="text-center py-12">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full mb-4">
+                <div className="w-6 h-6 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+              </div>
+              <p className="text-slate-700 font-medium">Redirecting...</p>
             </CardContent>
           </Card>
         </main>
@@ -79,55 +82,78 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
       <Navigation />
 
-      <main className="container mx-auto px-4 py-8">
-        <Card className="max-w-md mx-auto">
-          <CardHeader>
-            <CardTitle className="text-2xl text-center">Sign In</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
+      <main className="container mx-auto py-16">
+        <div className="max-w-md mx-auto">
+          <div className="text-center mb-8">
+            <h1 className="gradient-text mb-4">Welcome Back</h1>
+            <p className="text-slate-600">Sign in to your TalentX account</p>
+          </div>
+
+          <Card>
+            <CardHeader className="text-center">
+              <CardTitle className="text-2xl">Sign In</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-2">
+                  <Label htmlFor="email" className="text-slate-700 font-medium">
+                    Email
+                  </Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label
+                    htmlFor="password"
+                    className="text-slate-700 font-medium"
+                  >
+                    Password
+                  </Label>
+                  <Input
+                    id="password"
+                    type="password"
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
+
+                {error && (
+                  <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                    <p className="text-sm text-red-600 font-medium">{error}</p>
+                  </div>
+                )}
+
+                <Button
+                  type="submit"
+                  className="w-full btn-primary"
+                  disabled={isLoading}
+                  size="lg"
+                >
+                  {isLoading ? "Signing in..." : "Sign In"}
+                </Button>
+              </form>
+
+              <div className="mt-6 text-center text-sm text-slate-600">
+                Dont have an account?{" "}
+                <span className="text-slate-900 hover:underline cursor-pointer font-medium">
+                  Contact support to get started
+                </span>
               </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="Enter your password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-
-              {error && <p className="text-sm text-red-600">{error}</p>}
-
-              <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? "Signing in..." : "Sign In"}
-              </Button>
-            </form>
-
-            <div className="mt-4 text-center text-sm text-muted-foreground">
-              Don't have an account?{" "}
-              <span className="text-primary hover:underline cursor-pointer">
-                Contact support to get started
-              </span>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </div>
       </main>
     </div>
   );

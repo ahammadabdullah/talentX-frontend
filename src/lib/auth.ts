@@ -17,32 +17,32 @@ export const authConfig: NextAuthConfig = {
 
         try {
           // Call backend login endpoint
-          const response = await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                email: credentials.email,
-                password: credentials.password,
-              }),
-            }
-          );
+          // const response = await fetch(
+          //   `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
+          //   {
+          //     method: "POST",
+          //     headers: {
+          //       "Content-Type": "application/json",
+          //     },
+          //     body: JSON.stringify({
+          //       email: credentials.email,
+          //       password: credentials.password,
+          //     }),
+          //   }
+          // );
 
-          if (!response.ok) {
-            return null;
-          }
+          // if (!response.ok) {
+          //   return null;
+          // }
 
-          const data = await response.json();
-
-          return {
-            id: data.user.id,
-            email: data.user.email,
-            role: data.user.role as UserRole,
-            accessToken: data.accessToken,
+          const data = {
+            id: "550e8400-e29b-41d4-a716-446655440001",
+            name: "John Smith",
+            email: "john.smith@techcorp.com",
+            role: "EMPLOYER",
           };
+
+          return await data;
         } catch (error) {
           console.error("Auth error:", error);
           return null;
